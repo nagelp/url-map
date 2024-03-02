@@ -11,6 +11,9 @@ html, body {
   height: 100%;
   margin: 0;
 }
+img.specialcolor {
+  filter: hue-rotate(120deg);
+}
 </style>
 </head>
 <body>
@@ -26,6 +29,7 @@ async function load() {
   let zoom = parseInt(initialZoom || '2', 10);
   let q = params.get('q');
   let markers = params.getAll('marker');
+  let specialMarker = params.get('specialMarker');
   let map = L.map('map', { zoomControl: false }).setView(toPoint(center), zoom);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -53,6 +57,7 @@ async function load() {
     let center = map.getCenter();
     let u = new URLSearchParams();
     markers.forEach(s => u.append('marker', s));
+    u.append('specialMarker', specialMarker);
     u.append('center', `${center.lat},${center.lng}`);
     u.append('zoom', newZoom);
     history.replaceState(null, null, '?' + u.toString());
@@ -60,6 +65,8 @@ async function load() {
   markers.forEach(s => {
     L.marker(toPoint(s)).addTo(map);
   });
+  var s = L.marker(toPoint(specialMarker)).addTo(map);
+  s._icon.classList.add("specialcolor");
 }
 load();
 </script>

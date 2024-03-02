@@ -25,6 +25,10 @@ To add markers to the map, use `?marker=lat,lon`. You can pass this multiple tim
 
 - https://map.simonwillison.net/?center=51.49,0&zoom=8&marker=51.49,0&marker=51.3,0.2
 
+To add a special marker (red), use `?specialMarker=lat,lon`.
+
+- https://map.simonwillison.net/?center=51.49,0&zoom=8&marker=51.49,0&marker=51.3,0.2&specialMarker=51.523774,-0.158431
+
 ## Using this with shot-scraper
 
 You can use this tool to create static map images using [shot-scraper](https://shot-scraper.datasette.io/). For example:
